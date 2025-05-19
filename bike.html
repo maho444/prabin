@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Will You Buy Me an iPhone?</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 100px;
+      background-color: #ffe6f0;
+      overflow: hidden;
+      position: relative;
+    }
+
+    h1 {
+      color: #ff3399;
+      z-index: 1;
+      position: relative;
+      text-shadow: 2px 2px 5px #ff99cc;
+    }
+
+    #buttons {
+      margin-top: 30px;
+      z-index: 1;
+      position: relative;
+    }
+
+    button {
+      padding: 15px 30px;
+      font-size: 18px;
+      margin: 10px;
+      cursor: pointer;
+      border: none;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+
+    #yesBtn {
+      background-color: #66cc66;
+      color: white;
+    }
+
+    #noBtn {
+      background-color: #ff6666;
+      color: white;
+      position: absolute;
+    }
+
+    #response {
+      margin-top: 40px;
+      font-size: 24px;
+      color: #cc0066;
+      font-weight: bold;
+      z-index: 1;
+      position: relative;
+    }
+
+    .phone {
+      position: absolute;
+      font-size: 24px;
+      animation: floatUp 10s linear infinite;
+      opacity: 0.8;
+      z-index: 0;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-10vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Will you buy me an iPhone?</h1>
+  <div id="buttons">
+    <button id="yesBtn">Yes</button>
+    <button id="noBtn">No</button>
+  </div>
+  <div id="response"></div>
+
+  <script>
+    const noBtn = document.getElementById('noBtn');
+    const yesBtn = document.getElementById('yesBtn');
+    const response = document.getElementById('response');
+
+    // Move No button within screen boundaries
+    noBtn.addEventListener('mouseover', () => {
+      const btnWidth = noBtn.offsetWidth;
+      const btnHeight = noBtn.offsetHeight;
+      const maxX = window.innerWidth - btnWidth;
+      const maxY = window.innerHeight - btnHeight;
+
+      const x = Math.random() * maxX;
+      const y = Math.random() * maxY;
+
+      noBtn.style.left = `${x}px`;
+      noBtn.style.top = `${y}px`;
+    });
+
+    // Show message on Yes
+    yesBtn.addEventListener('click', () => {
+      response.textContent = "I knew you will ❤️📱";
+    });
+
+    // Floating iPhones
+    for (let i = 0; i < 30; i++) {
+      const phone = document.createElement('div');
+      phone.className = 'phone';
+      phone.textContent = '📱';
+      phone.style.left = `${Math.random() * 100}vw`;
+      phone.style.fontSize = `${20 + Math.random() * 20}px`;
+      phone.style.animationDuration = `${8 + Math.random() * 5}s`;
+      document.body.appendChild(phone);
+    }
+  </script>
+</body>
+</html>
